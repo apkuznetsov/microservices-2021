@@ -26,14 +26,12 @@ public class ForexRestcontroller {
     private ExchangeRateRepository rateRepo;
 
     @GetMapping(path = "/today")
-    public ResponseEntity<DateRates> today() {
-        ResponseEntity responseEntity;
+    public ResponseEntity today() {
+        ResponseEntity responseEntity = new ResponseEntity<>(HttpStatus.NO_CONTENT);
         Date today = new Date(System.currentTimeMillis());
         List<ExchangeRate> todayRates = rateRepo.findAllByDate(today);
 
-        if (todayRates.isEmpty()) {
-            responseEntity = new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
+        if (!todayRates.isEmpty()) {
             Map<String, Double> rates = todayRates.stream().collect(
                     Collectors.toMap(ExchangeRate::getLetterCode, ExchangeRate::getRate
                     ));
