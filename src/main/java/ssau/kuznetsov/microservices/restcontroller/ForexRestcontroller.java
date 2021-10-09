@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ssau.kuznetsov.microservices.dto.DateRates;
+import ssau.kuznetsov.microservices.dto.FromTo;
 import ssau.kuznetsov.microservices.model.ExchangeRate;
 import ssau.kuznetsov.microservices.repository.ExchangeRateRepository;
 import ssau.kuznetsov.microservices.service.ForexService;
@@ -40,5 +42,19 @@ public class ForexRestcontroller {
         }
 
         return responseEntity;
+    }
+
+    @GetMapping(path = "/{from}/{to}")
+    public ResponseEntity fromTo(
+            @PathVariable("from") String from,
+            @PathVariable("to") String to) {
+
+        ExchangeRate currFrom = rateRepo.findByLetterCode(from.toUpperCase());
+        ExchangeRate currTo = rateRepo.findByLetterCode(to.toUpperCase());
+
+        double rate = currTo.getRate()/currFrom.getRate();
+        FromTo response = new FromTo(currFrom.getDate(), currFrom.getLetterCode(), currTo.getLetterCode(), rate);
+
+        return new ResponseEntity(response, HttpStatus.OK);
     }
 }
