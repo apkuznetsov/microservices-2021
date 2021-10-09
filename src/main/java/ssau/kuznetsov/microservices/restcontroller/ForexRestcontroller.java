@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ssau.kuznetsov.microservices.dto.ForexResponse;
+import ssau.kuznetsov.microservices.dto.DateRates;
 import ssau.kuznetsov.microservices.model.ExchangeRate;
 import ssau.kuznetsov.microservices.repository.ExchangeRateRepository;
 import ssau.kuznetsov.microservices.service.ForexService;
@@ -26,7 +26,7 @@ public class ForexRestcontroller {
     private ExchangeRateRepository rateRepo;
 
     @GetMapping(path = "/today")
-    public ResponseEntity<ForexResponse> today() {
+    public ResponseEntity<DateRates> today() {
         ResponseEntity responseEntity;
         Date today = new Date(System.currentTimeMillis());
         List<ExchangeRate> todayRates = rateRepo.findAllByDate(today);
@@ -37,7 +37,7 @@ public class ForexRestcontroller {
             Map<String, Double> rates = todayRates.stream().collect(
                     Collectors.toMap(ExchangeRate::getLetterCode, ExchangeRate::getRate
                     ));
-            ForexResponse response = new ForexResponse(today, rates);
+            DateRates response = new DateRates(today, rates);
             responseEntity = new ResponseEntity(response, HttpStatus.OK);
         }
 
