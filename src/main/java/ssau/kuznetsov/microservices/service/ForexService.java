@@ -45,7 +45,7 @@ public class ForexService implements InitializingBean {
         return result;
     }
 
-    //@Scheduled(fixedDelay = DELAY)
+    @Scheduled(fixedDelay = DELAY)
     public void updateRateRepo() {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(FOREX_URL)
                 .queryParam("access_key", ACCESS_KEY);
