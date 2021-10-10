@@ -1,15 +1,15 @@
-package ssau.kuznetsov.microservices.model;
+package ssau.kuznetsov.microservices.dto;
 
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Map;
 
-public class ForexResponse implements Serializable {
+public class ThirdPartyResponse implements Serializable {
 
-    public Long timestamp;
-    public String base;
-    public Date date;
-    public Map<String, Double> rates;
+    private Long timestamp;
+    private String base;
+    private Date date;
+    private Map<String, Double> rates;
     private boolean success;
 
     public boolean isSuccess() {

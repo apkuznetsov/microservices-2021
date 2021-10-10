@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import ssau.kuznetsov.microservices.model.ExchangeRate;
-import ssau.kuznetsov.microservices.model.ForexResponse;
-import ssau.kuznetsov.microservices.repository.RateRepository;
+import ssau.kuznetsov.microservices.dto.ThirdPartyResponse;
+import ssau.kuznetsov.microservices.repository.ExchangeRateRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class ForexService implements InitializingBean {
     private final String FOREX_URL;
     private final String ACCESS_KEY;
     @Autowired
-    private RateRepository rateRepo;
+    private ExchangeRateRepository rateRepo;
 
     @Autowired
     public ForexService(
@@ -34,7 +34,7 @@ public class ForexService implements InitializingBean {
         ACCESS_KEY = accessKey;
     }
 
-    private List<ExchangeRate> toExchangeRate(ForexResponse response) {
+    private List<ExchangeRate> toExchangeRate(ThirdPartyResponse response) {
         int quantity = response.getBase().length();
         List<ExchangeRate> result = new ArrayList<>(quantity);
 
@@ -51,12 +51,12 @@ public class ForexService implements InitializingBean {
                 .queryParam("access_key", ACCESS_KEY);
         RestTemplate restTemplate = new RestTemplate();
 
-        ForexResponse forexResponse = restTemplate.getForObject(builder.toUriString(), ForexResponse.class);
-        if (forexResponse == null) {
+        ThirdPartyResponse thirdPartyResponse = restTemplate.getForObject(builder.toUriString(), ThirdPartyResponse.class);
+        if (thirdPartyResponse == null) {
             return;
         }
 
-        List<ExchangeRate> rates = toExchangeRate(forexResponse);
+        List<ExchangeRate> rates = toExchangeRate(thirdPartyResponse);
 
         try {
             rateRepo.saveAll(rates);
@@ -69,6 +69,6 @@ public class ForexService implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
-        updateRateRepo();
+        //updateRateRepo();
     }
 }
