@@ -32,4 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-.mvn/wrapper/
+stock-service/.mvn/wrapper/
