@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import ssau.kuznetsov.microservices.model.ExchangeRate;
-import ssau.kuznetsov.microservices.dto.ThirdPartyResponse;
+import ssau.kuznetsov.microservices.dtos.ThirdPartyResponse;
 import ssau.kuznetsov.microservices.repository.ExchangeRateRepository;
 
 import java.util.ArrayList;

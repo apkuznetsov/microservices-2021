@@ -1,4 +1,4 @@
-package ssau.kuznetsov.microservices.dto;
+package ssau.kuznetsov.microservices.dtos;
 
 import java.io.Serializable;
 import java.sql.Date;
