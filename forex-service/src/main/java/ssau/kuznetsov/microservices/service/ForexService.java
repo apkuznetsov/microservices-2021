@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import ssau.kuznetsov.microservices.models.ExchangeRate;
 import ssau.kuznetsov.microservices.dtos.ThirdPartyResponse;
-import ssau.kuznetsov.microservices.repository.ExchangeRateRepository;
+import ssau.kuznetsov.microservices.repository.ExchangeRateRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class ForexService implements InitializingBean {
     private final String FOREX_URL;
     private final String ACCESS_KEY;
     @Autowired
-    private ExchangeRateRepository rateRepo;
+    private ExchangeRateRepo rateRepo;
 
     @Autowired
     public ForexService(

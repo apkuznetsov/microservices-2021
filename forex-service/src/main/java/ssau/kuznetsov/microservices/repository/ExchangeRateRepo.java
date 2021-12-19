@@ -8,7 +8,7 @@ import java.sql.Date;
 import java.util.List;
 
 @Repository
-public interface ExchangeRateRepository extends JpaRepository<ExchangeRate, Long> {
+public interface ExchangeRateRepo extends JpaRepository<ExchangeRate, Long> {
 
     List<ExchangeRate> findAllByDate(Date date);
     ExchangeRate findByLetterCode(String letterCode);

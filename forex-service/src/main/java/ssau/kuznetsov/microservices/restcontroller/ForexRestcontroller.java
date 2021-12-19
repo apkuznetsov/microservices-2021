@@ -11,7 +11,7 @@ import ssau.kuznetsov.microservices.dtos.DateRates;
 import ssau.kuznetsov.microservices.dtos.FromAmountTo;
 import ssau.kuznetsov.microservices.dtos.FromTo;
 import ssau.kuznetsov.microservices.models.ExchangeRate;
-import ssau.kuznetsov.microservices.repository.ExchangeRateRepository;
+import ssau.kuznetsov.microservices.repository.ExchangeRateRepo;
 import ssau.kuznetsov.microservices.service.ForexService;
 
 import java.sql.Date;
@@ -26,7 +26,7 @@ public class ForexRestcontroller {
 
     private static final Logger log = Logger.getLogger(ForexService.class.getName());
     @Autowired
-    private ExchangeRateRepository rateRepo;
+    private ExchangeRateRepo rateRepo;
 
     @GetMapping(path = "/today")
     public ResponseEntity today() {
