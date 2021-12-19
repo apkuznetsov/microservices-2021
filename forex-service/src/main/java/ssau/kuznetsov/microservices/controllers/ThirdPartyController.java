@@ -1,4 +1,4 @@
-package ssau.kuznetsov.microservices.service;
+package ssau.kuznetsov.microservices.controllers;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +17,17 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 @Service
-public class ForexService implements InitializingBean {
+public class ThirdPartyController implements InitializingBean {
 
     private final static long DELAY = 14_400_000;
-    private static final Logger log = Logger.getLogger(ForexService.class.getName());
+    private static final Logger log = Logger.getLogger(ThirdPartyController.class.getName());
     private final String FOREX_URL;
     private final String ACCESS_KEY;
     @Autowired
     private ExchangeRateRepo rateRepo;
 
     @Autowired
-    public ForexService(
+    public ThirdPartyController(
             @Value("${forex.url}") String forexUrl,
             @Value("${forex.access-key}") String accessKey) {
         FOREX_URL = forexUrl;

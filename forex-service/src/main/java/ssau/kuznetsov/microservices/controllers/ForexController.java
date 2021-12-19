@@ -12,7 +12,6 @@ import ssau.kuznetsov.microservices.dtos.FromAmountTo;
 import ssau.kuznetsov.microservices.dtos.FromTo;
 import ssau.kuznetsov.microservices.models.ExchangeRate;
 import ssau.kuznetsov.microservices.repos.ExchangeRateRepo;
-import ssau.kuznetsov.microservices.service.ForexService;
 
 import java.sql.Date;
 import java.util.List;
@@ -24,7 +23,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class ForexController {
 
-    private static final Logger log = Logger.getLogger(ForexService.class.getName());
+    private static final Logger log = Logger.getLogger(ThirdPartyController.class.getName());
     @Autowired
     private ExchangeRateRepo rateRepo;
 
