@@ -11,5 +11,6 @@ import java.util.List;
 public interface ExchangeRateRepo extends JpaRepository<ExchangeRate, Long> {
 
     List<ExchangeRate> findAllByDate(Date date);
+
     ExchangeRate findByLetterCode(String letterCode);
 }
