@@ -1,4 +1,4 @@
-package ssau.kuznetsov.microservices.model;
+package ssau.kuznetsov.microservices.models;
 
 import javax.persistence.*;
 import java.io.Serializable;

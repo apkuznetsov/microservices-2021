@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ssau.kuznetsov.microservices.dtos.DateRates;
 import ssau.kuznetsov.microservices.dtos.FromAmountTo;
 import ssau.kuznetsov.microservices.dtos.FromTo;
-import ssau.kuznetsov.microservices.model.ExchangeRate;
+import ssau.kuznetsov.microservices.models.ExchangeRate;
 import ssau.kuznetsov.microservices.repository.ExchangeRateRepository;
 import ssau.kuznetsov.microservices.service.ForexService;
 
