@@ -1,4 +1,4 @@
-package ssau.kuznetsov.microservices.restcontroller;
+package ssau.kuznetsov.microservices.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,12 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ssau.kuznetsov.microservices.dto.DateRates;
-import ssau.kuznetsov.microservices.dto.FromAmountTo;
-import ssau.kuznetsov.microservices.dto.FromTo;
-import ssau.kuznetsov.microservices.model.ExchangeRate;
-import ssau.kuznetsov.microservices.repository.ExchangeRateRepository;
-import ssau.kuznetsov.microservices.service.ForexService;
+import ssau.kuznetsov.microservices.dtos.DateRates;
+import ssau.kuznetsov.microservices.dtos.FromAmountTo;
+import ssau.kuznetsov.microservices.dtos.FromTo;
+import ssau.kuznetsov.microservices.models.ExchangeRate;
+import ssau.kuznetsov.microservices.repos.ExchangeRateRepo;
 
 import java.sql.Date;
 import java.util.List;
@@ -22,11 +21,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
-public class ForexRestcontroller {
+public class ForexController {
 
-    private static final Logger log = Logger.getLogger(ForexService.class.getName());
+    private static final Logger log = Logger.getLogger(ThirdPartyController.class.getName());
     @Autowired
-    private ExchangeRateRepository rateRepo;
+    private ExchangeRateRepo rateRepo;
 
     @GetMapping(path = "/today")
     public ResponseEntity today() {
@@ -53,7 +52,7 @@ public class ForexRestcontroller {
         ExchangeRate currFrom = rateRepo.findByLetterCode(from.toUpperCase());
         ExchangeRate currTo = rateRepo.findByLetterCode(to.toUpperCase());
 
-        double rate = currTo.getRate()/currFrom.getRate();
+        double rate = currTo.getRate() / currFrom.getRate();
         FromTo response = new FromTo(currFrom.getDate(), currFrom.getLetterCode(), currTo.getLetterCode(), rate);
 
         return new ResponseEntity(response, HttpStatus.OK);
@@ -68,7 +67,7 @@ public class ForexRestcontroller {
         ExchangeRate currFrom = rateRepo.findByLetterCode(from.toUpperCase());
         ExchangeRate currTo = rateRepo.findByLetterCode(to.toUpperCase());
 
-        double rate = (double)amount * currTo.getRate()/currFrom.getRate();
+        double rate = (double) amount * currTo.getRate() / currFrom.getRate();
         FromAmountTo response = new FromAmountTo(currFrom.getDate(),
                 currFrom.getLetterCode(), amount,
                 currTo.getLetterCode(), rate);
