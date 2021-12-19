@@ -1,4 +1,4 @@
-package ssau.kuznetsov.microservices.repository;
+package ssau.kuznetsov.microservices.repos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
